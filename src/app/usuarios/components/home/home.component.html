@@ -1,0 +1,41 @@
+<section class="tarjetas">
+
+  <div class="error"
+  *ngIf="error"
+  >
+  <h2>Error: </h2>
+  <p>{{ error }}</p>
+  </div>
+
+  <div
+  *ngFor="let usuario of usuarios"
+  class="ppal">
+    <div>
+      <div>
+        <strong>
+          ID:
+        </strong>
+        <h1>{{ usuario.id }}</h1>
+      </div>
+      <div>
+        <strong>
+          NOMBRE:
+        </strong>
+        <h1>{{ usuario.name }}</h1>
+      </div>
+      <div>
+        <strong>
+          EMAIL:
+        </strong>
+        <h1>{{ usuario.email }}</h1>
+      </div>
+      <div>
+        <strong>
+          CIUDAD:
+        </strong>
+        <h1>{{ usuario.address.city }}</h1>
+      </div>
+    </div>
+  </div>
+
+</section>
