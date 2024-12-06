@@ -3,6 +3,7 @@
   <div class="error"
   *ngIf="error"
   >
+  <img src="images/alert.svg" alt="error">
   <h2>Error: </h2>
   <p>{{ error }}</p>
   </div>
@@ -11,12 +12,12 @@
   *ngFor="let usuario of usuarios"
   class="ppal">
     <div>
-      <div>
+      <!-- <div>
         <strong>
           ID:
         </strong>
         <h1>{{ usuario.id }}</h1>
-      </div>
+      </div> -->
       <div>
         <strong>
           NOMBRE:

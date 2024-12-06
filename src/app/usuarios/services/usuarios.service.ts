@@ -25,10 +25,12 @@ export class UsuariosService {
   searchUsuarios( usuario: string ):void {
     // usuario = usuario.split(' ').map(palabra => palabra.charAt(0).toUpperCase() + palabra.slice(1).toLowerCase()).join(' ');
     // console.log(usuario);
+    this.errorSubject.next('');
 
     if ( usuario.length === 0) return this.searchAllUsuarios();
     this.usuariosList = this.usuariosListAll.filter(user => { const tusuario = usuario.trim(); return user.name.toLocaleLowerCase().includes(tusuario.toLocaleLowerCase())
-      || user.email.toLocaleLowerCase().includes(tusuario.toLocaleLowerCase())});
+      || user.email.toLocaleLowerCase().includes(tusuario.toLocaleLowerCase())})
+      .sort((a, b) => a.name.localeCompare(b.name));
       console.log(this.usuariosList);
 
     if( this.usuariosList.length === 0 ){
@@ -74,15 +76,15 @@ export class UsuariosService {
 
   searchAllUsuarios( ):void {
     this.http.get<SearchUsers[]>(`${ this.apiUrl }`)
-    .pipe( catchError(error => { console.error('Ocurrio un error al consultar los datos: ', error);
-      this.errorSubject.next('Ocurrio un error al consultar los datos');
+    .pipe( catchError(error => { console.error('la API no responde: ', error);
+      this.errorSubject.next('la API no responde');
       this.usuariosListAll = [];
-      return throwError('Ocurrio un error al consultar los datos');
+      return throwError('la API no responde');
     }))
       .subscribe( resp => {
         //console.log(resp.address);
-        this.usuariosListAll = resp;
-        this.usuariosList = resp;
+        this.usuariosListAll = resp.sort((a, b) => a.name.localeCompare(b.name));;
+        this.usuariosList = this.usuariosListAll;
         //console.log( usuario, this.usuariosList);
       });
   }
