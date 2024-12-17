@@ -4,7 +4,7 @@
         <img src="images/search.svg" alt="search">
         <input type="text"
         placeholder="Buscar Usuario..."
-        (keyup.enter)="searchUsuario()"
+        (keyup)="searchUsuario( txtUsuarioInput.value )"
         #txtUsuarioInput>
     </div>
   </div>
