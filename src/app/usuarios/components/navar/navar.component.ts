@@ -14,8 +14,8 @@ export class NavarComponent implements OnInit, OnDestroy{
   private debouncer: Subject<string> = new Subject<string>();
   private debouncerSuscription?: Subscription;
 
-@Output()
-public onDebaunce =  new EventEmitter<string>();
+// @Output()
+// public onDebaunce =  new EventEmitter<string>();
 
 @ViewChild('txtUsuarioInput')
 public usuarioInput!: ElementRef<HTMLInputElement>;
@@ -25,7 +25,7 @@ constructor( private usuariosService: UsuariosService ) {}
 ngOnInit(): void {
   this.debouncerSuscription = this.debouncer
   .pipe(
-    debounceTime(1000)
+    debounceTime(300)
   )
   .subscribe( value => {
     // this.onDebaunce.emit( value );
